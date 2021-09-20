@@ -3,8 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import Cards from "../Components/Cards";
-import ErrorMsg from "../Components/ErrorMsg";
-import LoadingIndicator from "../Components/LoadingIndicator";
+import ErrorMsg from "../../Components/ErrorMsg";
+import LoadingIndicator from "../../Components/LoadingIndicator";
 import useAxiosOnMount from "../Components/useAxiosOnMount";
 
 export default function Users(props) {
