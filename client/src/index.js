@@ -5,11 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
 import 'semantic-ui-css/semantic.min.css'
+import AuthProvider from './Providers/AuthProvider';
 
 ReactDOM.render(
+  <AuthProvider>
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </AuthProvider>,
   document.getElementById('root')
 );
 
