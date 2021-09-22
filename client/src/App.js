@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from './Components/NavBar';
 import { Container } from 'semantic-ui-react';
 import { Route, Switch } from 'react-router';
-import Home from './Components/Home.js';
+import Home from './Pages/Home.js';
 
 function App() {
   return (

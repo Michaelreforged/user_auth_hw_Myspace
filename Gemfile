@@ -27,6 +27,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
+#based of the gem devise which is great just rails auth.
+gem 'devise_token_auth'
+
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
