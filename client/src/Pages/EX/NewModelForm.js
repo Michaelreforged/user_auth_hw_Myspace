@@ -2,34 +2,20 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
-const EditPersonForm = (props) =>{
+const NewModelForm = (props) =>{
   console.log(props)
   let url = props.match.url
-  url = url.replace("edit","")
+  url = url.replace("new","")
   console.log(url);
   const [name, setName] = useState("")
   
-  useEffect(()=>{
-  getData()
-  }, [])
-  
-  const getData = async () => {
-    try {
-      let res = await axios.get(`/api/${url}`)
-      setName(res.data.name)
-      console.log(res.data.name)
-    } catch {
-  
-    }
-  };
 
-  if (props.match.path == "/users/:id/edit"){
+  if (props.match.path == "/models/new"){
     const handleSubmit = async (e) =>{
       e.preventDefault()
-
     try {
-      let res = await axios.put(`/api/users/${props.match.params.id}`, {name});
-      props.history.push("/users")
+      let res = await axios.post("/api/models", {name})
+      props.history.push("/models")
     } catch (err) {
       console.log(err)
     };
@@ -37,26 +23,25 @@ const EditPersonForm = (props) =>{
 
   return(
     <div>
-    <h1>{"Edit User "}</h1>
+    <h1>{"New Model "}</h1>
     <form onSubmit={handleSubmit}>
-    <p>User Name</p>
+    <p>Model Name</p>
     <input value={name}
     onChange = {(e) => {
       setName(e.target.value)}}
     />
     <br></br>
-    <button>{"Edit "}</button>
+    <button>{"Add"}</button>
     </form>
     </div>
   )
     }
 
-  if (props.match.path == "/doctors/:id/edit"){
+  if (props.match.path == "/doctors/new"){
     const handleSubmit = async (e) =>{
-      e.preventDefault()
-
+    e.preventDefault()
     try {
-      let res = await axios.put(`/api/doctors/${props.match.params.id}`, {name});
+      let res = await axios.post("/api/doctors", {name})
       props.history.push("/doctors")
     } catch (err) {
       console.log(err)
@@ -65,7 +50,7 @@ const EditPersonForm = (props) =>{
 
   return(
     <div>
-    <h1>{"Edit User "}</h1>
+    <h1>{"New Model "}</h1>
     <form onSubmit={handleSubmit}>
     <p>Doctor Name</p>
     <input value={name}
@@ -73,11 +58,12 @@ const EditPersonForm = (props) =>{
       setName(e.target.value)}}
     />
     <br></br>
-    <button>{"Edit"}</button>
+    <button>{"Add"}</button>
     </form>
     </div>
   )
     }
+
 }
 
-export default EditPersonForm
+export default NewModelForm

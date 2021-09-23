@@ -5,7 +5,7 @@ import  { AuthContext } from "../Providers/AuthProvider";
 
 const Login = (props) => {
   const history = useHistory();
-  const [email, setEmail] = useState("Test@lsfjalsf.com")
+  const [email, setEmail] = useState("Test@test.com")
   const [password, setPassword] = useState("123456")
   const {handleLogin} = useContext(AuthContext)
 
