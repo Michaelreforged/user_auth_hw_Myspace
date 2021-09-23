@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import  { AuthContext } from "../Providers/AuthProvider";
 
 const Register = (props) => {
@@ -19,34 +19,55 @@ const Register = (props) => {
   }
 
   return(
-    <div>
-      <h1>Register</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Input
-        value={email}
-        onChange={(e,{value}) =>{
-          setEmail(value)
-        }}
-        label={"Email"}
-        />
-        <Form.Input
-        value={password}
-        onChange={(e,{value}) =>{
-          setPassword(value)
-        }}
-        label={"Password"}
-        />
-        <Form.Input
-        value={pwdConfirm}
-        onChange={(e,{value}) =>{
-          setPwdConfirm(value)
-        }}
-        label={"Confirm Password"}
-        />
-        <Button>Register</Button>
-      </Form>
-    </div>
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as='h2' color='blue' textAlign='center'>
+          <Image src='/logo192.png' /> Register new account
+        </Header>
+        <Form size='large' onSubmit={handleSubmit}>
+          <Segment stacked>
+            <Form.Input 
+              onChange={(e,{value}) =>{
+                setEmail(value)
+              }}
+              fluid icon='user' 
+              iconPosition='left' 
+              placeholder='E-mail address' 
+            />
+            <Form.Input
+              onChange={(e,{value}) =>{
+                setPassword(value)
+              }}
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Password'
+              type='password'
+            />
+            <Form.Input
+              onChange={(e,{value}) =>{
+                setPwdConfirm(value)
+              }}
+              label={"Confirm Password"}
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Password'
+              type='password'
+            />
+  
+            <Button color='blue' fluid size='large'>
+              Register
+            </Button>
+          </Segment>
+        </Form>
+        <Message>
+          New to us? <a href='#'>Sign Up</a>
+        </Message>
+      </Grid.Column>
+    </Grid>
   )
 }
 
 export default Register
+
