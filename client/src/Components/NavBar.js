@@ -48,15 +48,18 @@ const NavBar = (props) =>{
         <Menu.Item as='a' active={location.pathname === '/components'} >
           <Link to='/components'>
             Components    
-          </Link>
-        </Menu.Item >
-        
-        <Menu.Item as='a' active={location.pathname === '/protectedcomponents'} >
-          <Link to='/protectedcomponents'>
-            Protected Components    
-          </Link>
-        </Menu.Item >
-
+          </Menu.Item >
+        </Link>
+        <Link to='/viewusers'>
+          <Menu.Item active={location.pathname === '/viewusers'} >
+            View Other Users    
+          </Menu.Item >
+        </Link>
+        <Link to='/newpost'>
+          <Menu.Item active={location.pathname === '/newpost'} >
+            Create a Post    
+          </Menu.Item >
+        </Link>
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
       </Menu>
     </Sticky> 

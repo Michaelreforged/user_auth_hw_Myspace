@@ -7,20 +7,20 @@ import ErrorMsg from "../../Components/ErrorMsg";
 import LoadingIndicator from "../../Components/LoadingIndicator";
 import useAxiosOnMount from "../Components/useAxiosOnMount";
 
-export default function Users(props) {
-  const { data: users, setData: setUsers, loading, error} = useAxiosOnMount("/api/users");
+export default function Models(props) {
+  const { data: models, setData: setModels, loading, error} = useAxiosOnMount("/api/models");
 
-  const deleteUsers = async (id) => {
+  const deleteModels = async (id) => {
     try {
-      await axios.delete(`/api/users/${id}`)
-      const newUsers = users.filter((u)=>(u.id !== id))
-      setUsers(newUsers)
+      await axios.delete(`/api/models/${id}`)
+      const newModels = models.filter((u)=>(u.id !== id))
+      setModels(newModels)
     } catch (error) {
       
     }
   }
 
-  const renderUsers = () => {
+  const renderModels = () => {
 
     if (loading){
       return <LoadingIndicator/>
@@ -28,19 +28,19 @@ export default function Users(props) {
     if (error){
         return(
         <ErrorMsg
-        loc = "Users (Getting Data)"
+        loc = "Models (Getting Data)"
         error = {error}/>
       )}
-    if (users.length === 0 ){
-      return <p>No Users</p>
+    if (models.length === 0 ){
+      return <p>No Models</p>
     }
-    return users.map((u)=>{
+    return models.map((u)=>{
       return(
       <Cards
       data = {u}
       key = {u.id}
-      loc = "users"
-      del = {deleteUsers}
+      loc = "models"
+      del = {deleteModels}
       />
       )
     })
@@ -49,13 +49,13 @@ export default function Users(props) {
 
   return (
     <div>
-      <h1>Users</h1>
-      <Link to={`/users/new`}>
+      <h1>Models</h1>
+      <Link to={`/models/new`}>
             <Button color="green">
               New
             </Button>
       </Link>
-      {renderUsers()}
+      {renderModels()}
     </div>
   );
 }
