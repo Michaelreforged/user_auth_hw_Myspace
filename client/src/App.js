@@ -8,25 +8,27 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import FetchUser from './Components/FetchUsers';
 import ProtectedRoute from './Components/ProtectedRoutes';
+import Developers from './Pages/Developers';
 
 function App() {
   return (
-  <>
-    <NavBar/>
-    <FetchUser>
-    <Container>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/components" component={Components} />
-        <ProtectedRoute exact path="/protectedcomponents" component={Components} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login}/>
-        <Route component={() => <p>react router 404 path not found</p>} />
-      </Switch>
-    </Container>
-    </FetchUser>
-  </>
-  );
+    <>
+      <NavBar />
+      <FetchUser>
+        <Container>
+          <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/components" component={Components} />
+          <ProtectedRoute exact path="/protectedcomponents" component={Components} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/developers" component={Developers}/>
+          <Route component={() => <p>react router 404 path not found</p>} />
+          </Switch>
+        </Container>
+      </FetchUser>
+    </>
+  )
 }
 
 export default App;

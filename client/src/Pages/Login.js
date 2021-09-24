@@ -14,10 +14,10 @@ const Login = (props) => {
   }
 
   return(
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='blue' textAlign='center'>
-          <Image src='/logo192.png' /> Log-in to your account
+          <Image src='/friends.png' /> Log-in to your account
         </Header>
         <Form size='large' onSubmit={handleSubmit}>
           <Segment stacked>
@@ -46,7 +46,7 @@ const Login = (props) => {
           </Segment>
         </Form>
         <Message>
-          New to us? <a href='#'>Sign Up</a>
+          New to us? <a href='/register'>Sign Up</a>
         </Message>
       </Grid.Column>
     </Grid>

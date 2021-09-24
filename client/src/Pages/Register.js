@@ -19,10 +19,10 @@ const Register = (props) => {
   }
 
   return(
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid textAlign='center' style={{ height: '90vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h2' color='blue' textAlign='center'>
-          <Image src='/logo192.png' /> Register new account
+        <Header as='h2' mini color='blue' textAlign='center'>
+          <Image src='/friends.png' /> Register new account
         </Header>
         <Form size='large' onSubmit={handleSubmit}>
           <Segment stacked>
@@ -62,12 +62,12 @@ const Register = (props) => {
           </Segment>
         </Form>
         <Message>
-          New to us? <a href='#'>Sign Up</a>
+          <a href='/developers'>Contact Us</a>
         </Message>
       </Grid.Column>
     </Grid>
   )
 }
 
-export default Register
+export default Register;
 
