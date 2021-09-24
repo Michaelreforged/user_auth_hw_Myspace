@@ -3,14 +3,12 @@ import { Button } from "semantic-ui-react";
 import { Form } from "semantic-ui-react"
 import axios from "axios"
 import { AuthContext } from "../Providers/AuthProvider";
-import { useHistory } from "react-router-dom";
 
 const NewPost = () => {
   const { user: currentUser } = useContext(AuthContext)
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const history = useHistory();
 
   const getPosts = async () => {
     try {
@@ -35,7 +33,6 @@ const NewPost = () => {
       // let newPosts = {...posts, post}
       // setPosts(newPosts)
       console.log(posts)
-      history.push("/")
     } catch (err) {
       console.log(err)
     }
@@ -44,7 +41,6 @@ const NewPost = () => {
 
   return (
     <div>
-      <h1>Create a new Post</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Input 
         value = {title}

@@ -45,6 +45,11 @@ const NavBar = (props) =>{
             View Other Users    
           </Menu.Item >
         </Link>
+        <Link to='/newpost'>
+          <Menu.Item active={location.pathname === '/newpost'} >
+            Create a Post    
+          </Menu.Item >
+        </Link>
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
     </Menu>
   )
