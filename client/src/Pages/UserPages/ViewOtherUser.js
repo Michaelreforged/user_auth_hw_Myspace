@@ -1,42 +1,42 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Button, Card } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import ErrorMsg from "../../Components/ErrorMsg";
 import LoadingIndicator from "../../Components/LoadingIndicator";
 import useAxiosOnMount from "../../hooks/useAxiosOnMount"
 import { AuthContext } from "../../Providers/AuthProvider";
 
 export default function ViewUsers(props) {
-  const { data: users, setData: setUsers, loading, error} = useAxiosOnMount("/api/users");
+  const { data: users, setData: setUsers, loading, setLoading, error} = useAxiosOnMount("/api/users");
   const { user: currentUser} = useContext(AuthContext)
   const [ didFilter, setDidFilter] = useState(false);
 
 
   useEffect(()=>{
-    console.log("useEffect ran")
+    setLoading(true)
+    console.log("Filtered users ran")
     filteredUsers();
   },[didFilter])
 
   const filteredUsers = () => {
     if (didFilter === true){
-      return
+      return setLoading(false)
     }
-    if(users !== null){
+    else if(users !== null){
     let newList = users.filter((u)=>(u.id !== currentUser.id))
-    console.log(newList)
     setUsers(newList)
+    setLoading(true)
     return setDidFilter(true)
-  }
-    if (didFilter === null){
+    }
+    else if (didFilter === null){
+      setLoading(true)
       return setDidFilter(false)
     }
     else {
+      setLoading(true)
       return setDidFilter(null)
     }
   }
 
-  console.log("didfilter",didFilter)
 
   const renderUsers = () => {
 
@@ -54,7 +54,7 @@ export default function ViewUsers(props) {
     }
     return users.map((u)=>{
       return(
-      <h1>{u.email}</h1>
+      <Segment key={u.id}>{u.email}</Segment>
       )
     })
     
