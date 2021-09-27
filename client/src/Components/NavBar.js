@@ -1,8 +1,10 @@
+import '../App.css';
 import React, { useContext } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Image, Menu, Sticky } from 'semantic-ui-react'
 import { AuthContext } from '../Providers/AuthProvider';
 import { useHistory } from 'react-router';
+
 
 
 const NavBar = (props) =>{
@@ -13,51 +15,67 @@ const NavBar = (props) =>{
   const rightNavItems = () => {
     if(user){
       return(
+      <>
+        <Menu.Item active={location.pathname ==="/user"}>
+          <Link to="/user">
+          User
+          </Link>
+        </Menu.Item>
         <Menu.Item onClick={() => handleLogout(history)}>Logout</Menu.Item>
+      </>
       )
-    }
+    } else {
     return(
       <>
-      <Link to="/login">
-      <Menu.Item active={location.pathname ==="/login"}>Login</Menu.Item>
-      </Link>
-      <Link to="/register">
-      <Menu.Item active={location.pathname ==="/register"}>Register</Menu.Item>
-      </Link>
+        <Menu.Item as='a' active={location.pathname ==="/login"}>
+          <Link to="/login">
+            Login
+          </Link>
+        </Menu.Item>
+
+        <Menu.Item as='a' active={location.pathname ==="/register"}>
+          <Link to="/register">
+            Register
+          </Link>
+        </Menu.Item>
       </>
     )
+    }
   }
 
   return(
-    <Menu>
-        <Link to='/'>
-          <Menu.Item active={location.pathname === '/'} >
-            Home
-          </Menu.Item >
-        </Link>
-        <Link to='/components'>
-          <Menu.Item active={location.pathname === '/components'} >
+    <Sticky>
+      <Menu stackable inverted color='blue'>
+        <Menu.Item as='a' header active={location.pathname === '/'}>
+          <Image size='mini' src='/friends.png' style={{ marginRight: '1.5em' }}/>
+          <Link to='/'>
+            Friends
+          </Link>
+        </Menu.Item>
+        <Menu.Item as='a' active={location.pathname === '/components'} >
+          <Link to='/components'>
             Components    
-          </Menu.Item >
-        </Link>
-        <Link to='/viewusers'>
+          </Link>
+          </Menu.Item>
           <Menu.Item active={location.pathname === '/viewusers'} >
+        <Link to='/viewusers'>
             View Other Users    
-          </Menu.Item >
         </Link>
-        <Link to='/newpost'>
+          </Menu.Item >
           <Menu.Item active={location.pathname === '/newpost'} >
+        <Link to='/newpost'>
             Create a Post    
-          </Menu.Item >
         </Link>
+        </Menu.Item>
         <Link to='/myposts'>
           <Menu.Item active={location.pathname === '/myposts'} >
             My Posts 
           </Menu.Item >
         </Link>
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
-    </Menu>
+      </Menu>
+    </Sticky> 
   )
 }
 
-export default withRouter(NavBar)
+export default withRouter(NavBar);

@@ -4,5 +4,8 @@ Rails.application.routes.draw do
     resources :users do
       resources :posts
     end
+    get 'friended', to: "users#friends"
+    get 'notFriended', to: "users#not_friended"
+    put 'friending', to: "users#update_friends"
   end
 end

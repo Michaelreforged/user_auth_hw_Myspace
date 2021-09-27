@@ -9,12 +9,18 @@ import Login from './Pages/Login';
 import FetchUser from './Components/FetchUsers';
 import ProtectedRoute from './Components/ProtectedRoutes';
 import ViewUsers from './Pages/UserPages/ViewOtherUser';
+import ViewUserPage from './Pages/UserPages/ViewUserpage';
+import EditUserForm from './Pages/UserPages/EditUser';
 import NewPost from './Pages/NewPost';
+<<<<<<< HEAD
 import MyPosts from './Pages/MyPosts';
 import EditPost from './Pages/EditPost';
 import { useContext } from 'react';
 import { AuthContext } from './Providers/AuthProvider';
 import Post from './Components/Post';
+=======
+import Friends from './Pages/UserPages/Friends';
+>>>>>>> 68fc2555db003881f850aaa7b4a53e9c6c6bef7a
 
 function App() {
   const { user: currentUser } = useContext(AuthContext);
@@ -27,7 +33,10 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/components" component={Components} />
         {/* <ProtectedRoute exact path="/protectedcomponents" component={Components} /> */}
-        <Route exact path="/viewusers" component={ViewUsers} />
+        <ProtectedRoute exact path="/viewusers" component={ViewUsers} />
+        <Route exact path="/user" component={ViewUserPage} />
+        <ProtectedRoute exact path="/user/edit" component={EditUserForm} />
+        <ProtectedRoute exact path="/user/friends" component={Friends} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login}/>
         <Route exact path="/newpost" component={NewPost}/>
