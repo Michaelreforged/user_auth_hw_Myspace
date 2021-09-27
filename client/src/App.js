@@ -12,9 +12,15 @@ import ViewUsers from './Pages/UserPages/ViewOtherUser';
 import ViewUserPage from './Pages/UserPages/ViewUserpage';
 import EditUserForm from './Pages/UserPages/EditUser';
 import NewPost from './Pages/NewPost';
+import MyPosts from './Pages/MyPosts';
+import EditPost from './Pages/EditPost';
+import { useContext } from 'react';
+import { AuthContext } from './Providers/AuthProvider';
+import Post from './Components/Post';
 import Friends from './Pages/UserPages/Friends';
 
 function App() {
+  const { user: currentUser } = useContext(AuthContext);
   return (
   <>
     <NavBar/>
@@ -31,6 +37,9 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login}/>
         <Route exact path="/newpost" component={NewPost}/>
+        <Route exact path="/myposts" component={MyPosts}/>
+        <Route exact path="/editpost" component={EditPost}/>
+        <Route exact path="/post" component={Post}/>
         <Route component={() => <p>react router 404 path not found</p>} />
       </Switch>
     </Container>

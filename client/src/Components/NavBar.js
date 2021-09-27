@@ -24,7 +24,7 @@ const NavBar = (props) =>{
         <Menu.Item onClick={() => handleLogout(history)}>Logout</Menu.Item>
       </>
       )
-    }
+    } else {
     return(
       <>
         <Menu.Item as='a' active={location.pathname ==="/login"}>
@@ -40,6 +40,7 @@ const NavBar = (props) =>{
         </Menu.Item>
       </>
     )
+    }
   }
 
   return(
@@ -65,6 +66,11 @@ const NavBar = (props) =>{
         <Link to='/newpost'>
             Create a Post    
         </Link>
+        </Menu.Item>
+          <Menu.Item active={location.pathname === '/myposts'} >
+          <Link to='/myposts'>
+            My Posts 
+            </Link>
           </Menu.Item >
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
       </Menu>

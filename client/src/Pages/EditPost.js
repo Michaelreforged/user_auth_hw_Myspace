@@ -1,38 +1,25 @@
-import React, { useCallback, useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Button } from "semantic-ui-react";
 import { Form } from "semantic-ui-react"
 import axios from "axios"
 import { AuthContext } from "../Providers/AuthProvider";
+import { useHistory } from "react-router-dom";
 
-const NewPost = () => {
+const EditPost = ({ post }) => {
   const { user: currentUser } = useContext(AuthContext)
-  const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
-  const getPosts = async () => {
-    try {
-      let res = await axios.get(`/api/users/${currentUser.id}/posts`);
-      setPosts(res.data)
-      console.log(res.data)
-    } catch (err) {
-      alert("could not get posts")
-    }
-  }
-  useEffect(() => {
-    getPosts();
-  }, [])
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
-    console.log("handle submit:", posts)
+    console.log("handle submit:", post)
     e.preventDefault();
     try {
       console.log("post submitted")
-      let res = await axios.post(`/api/users/${currentUser.id}/posts`, {title, body})
+      let res = await axios.put(`/api/users/${currentUser.id}/posts/${post.id}`, {title, body})
       console.log(res);
-      // let newPosts = {...posts, post}
-      // setPosts(newPosts)
-      console.log(posts)
+      console.log(post)
+      history.push("/myposts")
     } catch (err) {
       console.log(err)
     }
@@ -47,19 +34,19 @@ const NewPost = () => {
         onChange = {(e, { value }) => {
           setTitle(value);
         }}
-        label = {"Title"}
+        label = {"Edit Title"}
         />
         <Form.Input 
         value = {body}
-        label = {"Body"}
+        label = {"Edit Body"}
         onChange = {(e, { value }) => {
           setBody(value);
         }}
         />
-        <Button>Add Post</Button>
+        <Button>Update Post</Button>
       </Form>
     </div>
   )
 }
 
-export default NewPost;
+export default EditPost;
