@@ -29,11 +29,15 @@ export default function ViewUsers(props) {
     }
     else if (didFilter === null){
       setLoading(true)
-      return setDidFilter(false)
+      setTimeout(()=>{
+        return setDidFilter(false)
+      },100)
     }
     else {
       setLoading(true)
+      setTimeout(()=>{
       return setDidFilter(null)
+    },200)
     }
   }
 

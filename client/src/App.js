@@ -10,6 +10,7 @@ import FetchUser from './Components/FetchUsers';
 import ProtectedRoute from './Components/ProtectedRoutes';
 import ViewUsers from './Pages/UserPages/ViewOtherUser';
 import ViewUserPage from './Pages/UserPages/ViewUserpage';
+import EditUserForm from './Pages/UserPages/EditUser';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         {/* <ProtectedRoute exact path="/protectedcomponents" component={Components} /> */}
         <ProtectedRoute exact path="/viewusers" component={ViewUsers} />
         <Route exact path="/user" component={ViewUserPage} />
+        <ProtectedRoute exact path="/user/edit" component={EditUserForm} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login}/>
         <Route component={() => <p>react router 404 path not found</p>} />
