@@ -29,6 +29,7 @@ const Post = ( {post} ) => {
               <Button>Show Post</Button>
             </Link>
             {showForm && <EditPost post={post}/>}
+            <Button onClick={()=>{setShowForm(!showForm)}}>{showForm ? "Cancel" : "Edit Post"}</Button>
             <Button color="red" onClick={() => {deletePost(post.id)}}>Delete Post</Button>
           </Card>
     </div>

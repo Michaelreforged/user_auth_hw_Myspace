@@ -3,11 +3,13 @@ import { Button } from "semantic-ui-react";
 import { Form } from "semantic-ui-react"
 import axios from "axios"
 import { AuthContext } from "../Providers/AuthProvider";
+import { useHistory } from "react-router-dom";
 
 const EditPost = ({ post }) => {
   const { user: currentUser } = useContext(AuthContext)
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     console.log("handle submit:", post)
@@ -17,6 +19,7 @@ const EditPost = ({ post }) => {
       let res = await axios.put(`/api/users/${currentUser.id}/posts/${post.id}`, {title, body})
       console.log(res);
       console.log(post)
+      history.push("/myposts")
     } catch (err) {
       console.log(err)
     }

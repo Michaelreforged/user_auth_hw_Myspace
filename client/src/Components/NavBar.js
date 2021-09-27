@@ -67,11 +67,11 @@ const NavBar = (props) =>{
             Create a Post    
         </Link>
         </Menu.Item>
-        <Link to='/myposts'>
           <Menu.Item active={location.pathname === '/myposts'} >
+          <Link to='/myposts'>
             My Posts 
+            </Link>
           </Menu.Item >
-        </Link>
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
       </Menu>
     </Sticky> 

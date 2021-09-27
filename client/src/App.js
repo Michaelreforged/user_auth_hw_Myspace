@@ -12,15 +12,12 @@ import ViewUsers from './Pages/UserPages/ViewOtherUser';
 import ViewUserPage from './Pages/UserPages/ViewUserpage';
 import EditUserForm from './Pages/UserPages/EditUser';
 import NewPost from './Pages/NewPost';
-<<<<<<< HEAD
 import MyPosts from './Pages/MyPosts';
 import EditPost from './Pages/EditPost';
 import { useContext } from 'react';
 import { AuthContext } from './Providers/AuthProvider';
 import Post from './Components/Post';
-=======
 import Friends from './Pages/UserPages/Friends';
->>>>>>> 68fc2555db003881f850aaa7b4a53e9c6c6bef7a
 
 function App() {
   const { user: currentUser } = useContext(AuthContext);
