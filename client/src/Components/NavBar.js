@@ -53,8 +53,8 @@ const NavBar = (props) =>{
         <Menu.Item as='a' active={location.pathname === '/components'} >
           <Link to='/components'>
             Components    
-          </Menu.Item >
-        </Link>
+          </Link>
+        </Menu.Item>
         <Link to='/viewusers'>
           <Menu.Item active={location.pathname === '/viewusers'} >
             View Other Users    

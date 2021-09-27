@@ -9,12 +9,9 @@ import Login from './Pages/Login';
 import FetchUser from './Components/FetchUsers';
 import ProtectedRoute from './Components/ProtectedRoutes';
 import ViewUsers from './Pages/UserPages/ViewOtherUser';
-<<<<<<< HEAD
 import ViewUserPage from './Pages/UserPages/ViewUserpage';
 import EditUserForm from './Pages/UserPages/EditUser';
-=======
 import NewPost from './Pages/NewPost';
->>>>>>> a66023f7ffbe4b979996e6c7e124d6bbf493b328
 
 function App() {
   return (
