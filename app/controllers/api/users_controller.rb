@@ -5,6 +5,14 @@ class Api::UsersController < ApplicationController
   def index
     render json: User.all
   end
+  
+  def not_friended
+    render json: User.not_friends(current_user.friend)
+  end
+
+  def friends
+    render json: User.friends(current_user.friend)
+  end
 
   def show
     render json: @user
@@ -17,6 +25,11 @@ class Api::UsersController < ApplicationController
     else
       render json: {errors: user.errors}, status: 422
     end
+  end
+
+  def update_friends
+    current_user.friend << params[:id].to_i
+    current_user.save
   end
 
   def update

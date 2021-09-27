@@ -12,6 +12,7 @@ import ViewUsers from './Pages/UserPages/ViewOtherUser';
 import ViewUserPage from './Pages/UserPages/ViewUserpage';
 import EditUserForm from './Pages/UserPages/EditUser';
 import NewPost from './Pages/NewPost';
+import Friends from './Pages/UserPages/Friends';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <ProtectedRoute exact path="/viewusers" component={ViewUsers} />
         <Route exact path="/user" component={ViewUserPage} />
         <ProtectedRoute exact path="/user/edit" component={EditUserForm} />
+        <ProtectedRoute exact path="/user/friends" component={Friends} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login}/>
         <Route exact path="/newpost" component={NewPost}/>

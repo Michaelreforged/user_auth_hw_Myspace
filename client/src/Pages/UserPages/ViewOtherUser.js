@@ -1,46 +1,36 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Segment } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Button, Card } from "semantic-ui-react";
 import ErrorMsg from "../../Components/ErrorMsg";
 import LoadingIndicator from "../../Components/LoadingIndicator";
 import useAxiosOnMount from "../../hooks/useAxiosOnMount"
 import { AuthContext } from "../../Providers/AuthProvider";
+import Friends from "./Friends";
 
 export default function ViewUsers(props) {
-  const { data: users, setData: setUsers, loading, setLoading, error} = useAxiosOnMount("/api/users");
-  const { user: currentUser} = useContext(AuthContext)
-  const [ didFilter, setDidFilter] = useState(false);
+  const { data: users, setData: setUsers, loading, setLoading, error} = useAxiosOnMount("/api/notFriended");
+  const { user: currentUser, setUser: setCurrentUser} = useContext(AuthContext)
 
+  const removeUser = (id) => {
+    setUsers(users.filter((u) => u.id !== id));
+  };
 
-  useEffect(()=>{
-    setLoading(true)
-    console.log("Filtered users ran")
-    filteredUsers();
-  },[didFilter])
-
-  const filteredUsers = () => {
-    if (didFilter === true){
-      return setLoading(false)
+  const addFriend = async (id) => {
+    try {
+      let res = await axios.put(`/api/friending`);
+      setCurrentUser({...currentUser, friend: [...currentUser.friend, id ] })
+      let newUser = users.map((user)=>{
+        return user.id !== currentUser.id ? user : currentUser
+      })
+      console.log(newUser)
+      setUsers(newUser)
+      console.log(users)
+      removeUser(id);
+    } catch (err) {
+      console.log(err);
     }
-    else if(users !== null){
-    let newList = users.filter((u)=>(u.id !== currentUser.id))
-    setUsers(newList)
-    setLoading(true)
-    return setDidFilter(true)
-    }
-    else if (didFilter === null){
-      setLoading(true)
-      setTimeout(()=>{
-        return setDidFilter(false)
-      },100)
-    }
-    else {
-      setLoading(true)
-      setTimeout(()=>{
-      return setDidFilter(null)
-    },200)
-    }
-  }
-
+  };
 
   const renderUsers = () => {
 
@@ -57,9 +47,21 @@ export default function ViewUsers(props) {
       return <p>No Users</p>
     }
     return users.map((u)=>{
+      if(u.id !== currentUser.id){
       return(
-      <Segment key={u.id}>{u.email}</Segment>
-      )
+        <Card>
+        <Card.Content>
+      <Card.Header>{u.email}</Card.Header>
+      <Card.Description>{u.name}</Card.Description>
+      <Button color="green" onClick={() => removeUser(u.id)}>
+        Remove from List
+      </Button>
+      <Button color="green" onClick={() => addFriend(u.id)}>
+        Add User as Friend
+      </Button>
+      </Card.Content>
+      </Card>
+      )}
     })
     
   }
@@ -67,6 +69,9 @@ export default function ViewUsers(props) {
   return (
     <div>
       <h1>Other Users</h1>
+      <Button color="green" onClick={()=>{props.history.push("/user/friends")}}>
+        View Friends
+      </Button>
       {renderUsers()}
     </div>
   );

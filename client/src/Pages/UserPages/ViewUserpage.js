@@ -10,13 +10,15 @@ export default function ViewUserPage(props) {
   const renderUser = () => {
     return (
       <Card>
+        <Card.Content>
       <Card.Header>{currentUser.email}</Card.Header>
-      <Card.Content>{currentUser.name}</Card.Content>
+      <Card.Description>{currentUser.name}</Card.Description>
       <Link to={`/user/edit`}>
-            <Button color="green">
-              Edit
-            </Button>
+      <Button color="green">
+        Edit
+      </Button>
       </Link>
+      </Card.Content>
       </Card>
     )
   }
