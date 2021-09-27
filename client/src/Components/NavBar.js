@@ -1,8 +1,10 @@
+import '../App.css';
 import React, { useContext } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Image, Menu, Sticky } from 'semantic-ui-react'
 import { AuthContext } from '../Providers/AuthProvider';
 import { useHistory } from 'react-router';
+
 
 
 const NavBar = (props) =>{
@@ -23,25 +25,33 @@ const NavBar = (props) =>{
     }
     return(
       <>
-      <Link to="/login">
-      <Menu.Item active={location.pathname ==="/login"}>Login</Menu.Item>
-      </Link>
-      <Link to="/register">
-      <Menu.Item active={location.pathname ==="/register"}>Register</Menu.Item>
-      </Link>
+        <Menu.Item as='a' active={location.pathname ==="/login"}>
+          <Link to="/login">
+            Login
+          </Link>
+        </Menu.Item>
+
+        <Menu.Item as='a' active={location.pathname ==="/register"}>
+          <Link to="/register">
+            Register
+          </Link>
+        </Menu.Item>
       </>
     )
   }
 
   return(
-    <Menu>
-        <Link to='/'>
-          <Menu.Item active={location.pathname === '/'} >
-            Home
-          </Menu.Item >
-        </Link>
-        <Link to='/components'>
-          <Menu.Item active={location.pathname === '/components'} >
+    <Sticky>
+      <Menu stackable inverted color='blue'>
+        <Menu.Item as='a' header active={location.pathname === '/'}>
+          <Image size='mini' src='/friends.png' style={{ marginRight: '1.5em' }}/>
+          <Link to='/'>
+            Friends
+          </Link>
+        </Menu.Item>
+        
+        <Menu.Item as='a' active={location.pathname === '/components'} >
+          <Link to='/components'>
             Components    
           </Menu.Item >
         </Link>
@@ -50,9 +60,15 @@ const NavBar = (props) =>{
             View Other Users    
           </Menu.Item >
         </Link>
+        <Link to='/newpost'>
+          <Menu.Item active={location.pathname === '/newpost'} >
+            Create a Post    
+          </Menu.Item >
+        </Link>
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
-    </Menu>
+      </Menu>
+    </Sticky> 
   )
 }
 
-export default withRouter(NavBar)
+export default withRouter(NavBar);
