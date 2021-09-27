@@ -15,7 +15,14 @@ const NavBar = (props) =>{
   const rightNavItems = () => {
     if(user){
       return(
+      <>
+        <Menu.Item active={location.pathname ==="/user"}>
+          <Link to="/user">
+          User
+          </Link>
+        </Menu.Item>
         <Menu.Item onClick={() => handleLogout(history)}>Logout</Menu.Item>
+      </>
       )
     }
     return(
@@ -44,22 +51,21 @@ const NavBar = (props) =>{
             Friends
           </Link>
         </Menu.Item>
-        
         <Menu.Item as='a' active={location.pathname === '/components'} >
           <Link to='/components'>
             Components    
-          </Menu.Item >
-        </Link>
-        <Link to='/viewusers'>
+          </Link>
+          </Menu.Item>
           <Menu.Item active={location.pathname === '/viewusers'} >
+        <Link to='/viewusers'>
             View Other Users    
-          </Menu.Item >
         </Link>
-        <Link to='/newpost'>
+          </Menu.Item >
           <Menu.Item active={location.pathname === '/newpost'} >
+        <Link to='/newpost'>
             Create a Post    
-          </Menu.Item >
         </Link>
+          </Menu.Item >
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
       </Menu>
     </Sticky> 
