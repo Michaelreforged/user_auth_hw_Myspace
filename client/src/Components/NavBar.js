@@ -50,6 +50,11 @@ const NavBar = (props) =>{
             Create a Post    
           </Menu.Item >
         </Link>
+        <Link to='/myposts'>
+          <Menu.Item active={location.pathname === '/myposts'} >
+            My Posts 
+          </Menu.Item >
+        </Link>
         <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
     </Menu>
   )
